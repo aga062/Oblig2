@@ -34,6 +34,14 @@ public class Bicycle extends Vehicle{
     public void setGears(int gears) {
         this.gears = gears;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Bicycle b = (Bicycle) super.clone();
+        b.productionDate = (Calendar) productionDate.clone();
+        return b;
+    }
+
     public void setProductionDate(Calendar productionDate) {
         this.productionDate = productionDate;
     }

@@ -1,5 +1,4 @@
-
-import java.util.*;
+import java.util.Calendar;
 public class Car extends Vehicle{
     private int power;
     private Calendar productionDate;
@@ -52,6 +51,13 @@ public class Car extends Vehicle{
 
     public void setPower(int power) {
         this.power = power;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Car c = (Car) super.clone();
+        c.productionDate = (Calendar) productionDate.clone();
+        return c;
     }
 
     public void setProductionDate(Calendar productionDate) {

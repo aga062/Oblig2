@@ -1,10 +1,15 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class TestVehicles {
     ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         TestVehicles vtest = new TestVehicles();
+
+
         try {
             vtest.menuLoop();
         } catch (InputMismatchException e) {
@@ -14,7 +19,7 @@ public class TestVehicles {
         }
     }
 
-    private void menuLoop() throws InputMismatchException {
+    private void menuLoop() throws InputMismatchException, CloneNotSupportedException {
         Scanner input = new Scanner(System.in);
         Vehicle vehicle;
 
@@ -29,8 +34,9 @@ public class TestVehicles {
             System.out.println("3......................Find vehicle by name");
             System.out.println("4..............Show data about all vehicles");
             System.out.println("5.......Change direction of a given vehicle");
-            System.out.println("6..............................Exit program");
-            System.out.print(".............................Your choice? ");
+            System.out.println("6.........................Test clone method");
+            System.out.println("7...............................Exit program ");
+            System.out.print(".................................Your choice ");
             int choice = input.nextInt();
 
             switch (choice) {
@@ -97,6 +103,26 @@ public class TestVehicles {
                     System.out.println();
                     break;
                 case 6:
+                    System.out.println();
+                    System.out.println(" Test your clone: ");
+
+                    Car c = new Car("Volvo 740", "blue", 85000, 1985, "1010-11", 0, 120);
+                    Car c2 = (Car) c.clone();
+                    Calendar newCalendar = Calendar.getInstance();
+                    newCalendar.set(2018, 01, 29);
+                    c2.setBuyingDate(newCalendar);
+
+                    System.out.printf("%tF\n", c.getBuyingDate());
+                    System.out.printf("%tF\n", c2.getBuyingDate());
+
+//                    Car c = new Car();
+//                    Calendar newCalendar = Calendar.getInstance();
+//                    newCalendar.set(2018,01,29);
+//                    System.out.println();
+                    break;
+
+
+                case 7:
                     input.close();
                     System.exit(0);
                 default:
