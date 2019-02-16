@@ -18,6 +18,33 @@ public class Car extends Vehicle{
         System.out.printf("Power:");
         this.setPower(input.nextInt());
     }
+
+    @Override
+    public void accelerate(double speedFactor) {
+        double speed = this.getSpeed();
+        double newSpeed = speed;
+        if (speed == 0) {
+            newSpeed = 0.5 * speedFactor;
+        } else {
+            newSpeed = speed * speedFactor;
+        }
+        if (newSpeed <= MAX_SPEED_CAR) {
+            this.setSpeed(newSpeed);
+        }
+        System.out.println("Vehicle accelerated to: " + newSpeed + "km/h");
+    }
+
+    @Override
+    public void breaks(double speedFactor) {
+        double speed = this.getSpeed();
+        if (speed > 0) {
+            double newSpeed = speed / speedFactor;
+            this.setSpeed(newSpeed);
+            System.out.println("Vehicle slowed down to: " + newSpeed + "km/h");
+        }
+    }
+
+
     public void turnRight(int degrees){
         if(degrees < 360 && degrees > 0) {
             this.setDirection(this.getDirection() + degrees);

@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public abstract class Vehicle implements Comparable<Vehicle>, Cloneable {
+public abstract class Vehicle implements Comparable<Vehicle>, Driveable {
     private String colour, name, serialNr;
     private int model, price, direction = 0;
     private double speed;
@@ -47,7 +47,17 @@ public abstract class Vehicle implements Comparable<Vehicle>, Cloneable {
 
     public abstract void turnLeft(int degrees);
 
+
+    {
+
+    }
+
     public abstract void turnRight(int degrees);
+
+    public void stop() {
+        this.speed = 0;
+        System.out.println("Vehicle stops");
+    }
 
     public String getColour() {
         return colour;
@@ -118,14 +128,26 @@ public abstract class Vehicle implements Comparable<Vehicle>, Cloneable {
     }
 
     public int compareTo(Vehicle v) {
-        if (price > v.getPrice()) {
+       /* if (price > v.getPrice()) {
             return 1;
         } else if (price < v.getPrice()) {
             return -1;
-        } else {
+        } else {*/
             return 0;
         }
+
+    @Override
+    public void accelerate(double speedFactor) {
+
     }
+
+    @Override
+    public void breaks(double speedFactor) {
+
+    }
+
+
+
 
     public Object clone() throws CloneNotSupportedException {
         Vehicle v = (Vehicle) super.clone();

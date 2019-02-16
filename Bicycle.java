@@ -19,6 +19,34 @@ public class Bicycle extends Vehicle{
         System.out.printf("Gears: ");
         this.setGears(input.nextInt());
     }
+
+    @Override
+    public void accelerate(double speedFactor) {
+        double speed = this.getSpeed();
+        double newSpeed = speed;
+        if (speed == 0) {
+            newSpeed = 0.3 * speedFactor;
+
+        } else {
+            newSpeed = Math.round(speed * 0.5 * speedFactor);
+
+        }
+        if (newSpeed <= MAX_SPEED_BIKE) {
+            this.setSpeed(newSpeed);
+            System.out.println("Bicycle accelerated to: " + newSpeed + " km/h");
+        }
+    }
+
+    @Override
+    public void breaks(double speedFactor) {
+        double speed = this.getSpeed();
+        if (speed > 0) {
+            double newSpeed = speed / (speedFactor * 0.5);
+            this.setSpeed(newSpeed);
+            System.out.println("Bicycle slowed down to: " + newSpeed + "km/h");
+        }
+    }
+
     public void turnRight(int degrees){
         System.out.println(degrees);
     }
